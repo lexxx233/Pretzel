@@ -2,9 +2,10 @@ var THREE = require('../lib/three.min.js');
 THREE.OrbitControls = require('../lib/OrbitControls.js');
 var THREEx = require('../lib/THREEx.WindowResize.min.js');
 var Style = require('./Pretzel.Style.js');
+var Stats = require('../lib/stats.min.js');
 
 var Viewer = function (divId) {
-    alert(divId)
+    console.log("Viewer constructor called")
     this.divId = divId;
     this.scene = null;
     this.camera = null;
@@ -28,7 +29,6 @@ Viewer.prototype = {
     init: function () {
         //Main scene
         this.scene = new THREE.Scene();
-        alert(this.divId)
         var SCREEN_WIDTH = document.getElementById(this.divId).clientWidth,
             SCREEN_HEIGHT = document.getElementById(this.divId).clientHeight;
 
@@ -40,7 +40,7 @@ Viewer.prototype = {
         this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
         //Viewer
-        this.renderer = new THREE.WebGLViewer({antialias: true, alpha: false});
+        this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: false});
         this.renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         this.renderer.setClearColor(0xffffff);
         this.renderer.shadowMapEnabled = true;
@@ -77,13 +77,13 @@ Viewer.prototype = {
         this.scene.add(dLight);
 
         // add simple ground
-        var groundGeometry = new THREE.PlaneGeometry(5000, 5000, 1, 1);
+        //var groundGeometry = new THREE.PlaneGeometry(5000, 5000, 1, 1);
+        var groundGeometry = new THREE.PlaneBufferGeometry(5000, 5000, 1, 1);
         var ground = new THREE.Mesh(groundGeometry, new THREE.MeshPhongMaterial({color: 0xdddddd}));
         ground.position.y = -100;
         ground.rotation.x = -Math.PI / 2;
         ground.receiveShadow = true;
         this.scene.add(ground);
-        alert("run to the end")
     },
 
     /**
@@ -118,12 +118,12 @@ Viewer.prototype = {
      *
      */
     update: function () {
-        this.controls.update(Pretzel.Viewer.clock.getDelta());
+        this.controls.update(this.clock.getDelta());
         this.stats.update();
         // smoothly move the particleLight
         var timer = Date.now() * 0.000025;
-        particleLight.position.x = Math.sin(timer * 5) * 300;
-        particleLight.position.z = Math.cos(timer * 5) * 300;
+        //particleLight.position.x = Math.sin(timer * 5) * 300;
+        //particleLight.position.z = Math.cos(timer * 5) * 300;
     },
 
     /**
@@ -138,10 +138,11 @@ Viewer.prototype = {
 
     /**
      *
-     * @this {Viewer}
      */
     animate: function () {
-        requestAnimationFrame(this.animate);
+        window.requestAnimationFrame(function () {
+            this.animate;
+        });
         this.render();
         this.update();
     },
@@ -172,7 +173,6 @@ Viewer.prototype = {
     initializeVisual: function () {
         this.render();
         this.animate();
-        alert("called")
     }
 };
 
