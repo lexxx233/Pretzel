@@ -34,12 +34,51 @@
 <a id="simulation-and-data-generator" class="anchor" href="#simulation-and-data-generator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Simulation and data generator</h5>
 
 <h3>
-<a id="quickstart" class="anchor" href="#quickstart" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quickstart</h3>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Start</h3>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>Simply source pretzel into your html
+create a 'div' with unique id</p>
+
+<div class="highlight highlight-html"><pre>    &lt;<span class="pl-ent">html</span>&gt;
+        &lt;<span class="pl-ent">head</span>&gt;
+<span class="pl-s1">            &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>pretzel.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+        &lt;/<span class="pl-ent">head</span>&gt;
+        &lt;<span class="pl-ent">body</span>&gt;
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>canvasId<span class="pl-pds">"</span></span> <span class="pl-e">width</span>=<span class="pl-s"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span> <span class="pl-e">height</span>=<span class="pl-s"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+        &lt;/<span class="pl-ent">body</span>&gt;
+    &lt;<span class="pl-ent">html</span>&gt;</pre></div>
+
+<p>Begin by creating a viewer port for an existing </p><div> element. Multiple view ports can be created on the same page
+
+<div class="highlight highlight-javascript"><pre>    <span class="pl-c1">window</span>.<span class="pl-en">onload</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+        <span class="pl-k">var</span> viewer <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Pretzel.Viewer</span>(<span class="pl-s"><span class="pl-pds">"</span>canvasId<span class="pl-pds">"</span></span>);
+        viewer.init(); <span class="pl-c">//init has to be called to setup the scene.</span>
+    }</pre></div>
+
+<p>Instantiate a chromosome (linear structure) Object</p>
+
+<div class="highlight highlight-javascript"><pre>    <span class="pl-k">var</span> bag <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Pretzel.Bag</span>(); <span class="pl-c">//Bagging as way to put structures into collections</span>
+    <span class="pl-k">var</span> structure <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Pretzel.Structure</span>(<span class="pl-s"><span class="pl-pds">"</span>chr1<span class="pl-pds">"</span></span>);
+    structure.setLength(<span class="pl-c1">122300</span>);
+    structure.randStructure(<span class="pl-c1">100</span>)
+    bag.<span class="pl-c1">add</span>(structure);</pre></div>
+
+<p>The structures or collection of structure can be rendered with viewer's APIs</p>
+
+<div class="highlight highlight-javascript"><pre>    viewer.viewBag(bag)
+    <span class="pl-c">//Alternatively individual structure can be rendered - viewer.viewStructure(structure)</span></pre></div>
+
+<p>Add all sort of information (sugar) on top of the rendered structures</p>
+
+<div class="highlight highlight-javascript"><pre>    <span class="pl-c">//Specify the region of interest to add information</span>
+    <span class="pl-k">var</span> info <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">PRETZEL.ChromosomeDecorator</span>(bag.getChromosome(<span class="pl-s"><span class="pl-pds">"</span>chr1<span class="pl-pds">"</span></span>), <span class="pl-c1">4000</span>, <span class="pl-c1">12000</span>);
+    <span class="pl-k">var</span> decoratorBag <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">PRETZEL.Bag</span>();
+    decoratorBag.<span class="pl-c1">add</span>(info);
+    viewer.viewBag(decoratorBag);</pre></div>
+
+<p>Setup any type of interactors which facilitate interactions with the 3D Structures. Several default</p>
+
+<div class="highlight highlight-javascript"><pre>    viewer.InteractorFactory(<span class="pl-s"><span class="pl-pds">'</span>mapInteractor<span class="pl-pds">'</span></span>);</pre></div>
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
@@ -50,6 +89,7 @@ $ git checkout gh-pages
 <a id="support--contact" class="anchor" href="#support--contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support &amp; Contact</h3>
 
 <p>Having trouble? Check out the documentation at <a href="https://help.github.com/pages">https://help.github.com/pages</a> or contact <a href="mailto:pretzeljsproject@gmail.com">pretzeljsproject@gmail.com</a> . You can also donate to future development of software like this <a href="#">here</a></p>
+</div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/lexxx233/Pretzel">PRETZEL</a> is maintained by <a href="https://github.com/lexxx233">lexxx233</a>.</span>
