@@ -76,9 +76,10 @@ Structure.prototype = {
             var randomX = Math.round(Math.random() * 500);
             var randomY = Math.round(Math.random() * 500);
             var randomZ = Math.round(Math.random() * 500);
-
             this.anchors.push(new THREE.Vector3(randomX, randomY, randomZ));
         }
+
+        console.log("random structure generated");
     }
 };
 

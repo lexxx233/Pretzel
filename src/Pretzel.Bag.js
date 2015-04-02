@@ -19,11 +19,10 @@ Bag.prototype = {
      * @param id {String}
      */
     rm: function (id) {
-        delete structures[id];
+        delete this.structures[id];
     },
 
     /**
-     * Return structure with a given id
      * @param id {String}
      * @returns {Structure}
      */

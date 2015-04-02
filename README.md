@@ -3,7 +3,7 @@ ___
 ####Quick Start
 
 ##### Visualization
-Simply source pretzel into your html then create a <div> with an unique id
+Simply source pretzel into your html then create a div element with an unique id
 ```html
     <html>
         <head>
@@ -14,7 +14,7 @@ Simply source pretzel into your html then create a <div> with an unique id
         </body>
     <html>
 ```
-Begin by creating a viewer port for using the <div> element Id. 
+Begin by creating a viewer port for using the div element Id. 
 ```javascript
     window.onload = function(){
         var viewer = new Pretzel.Viewer("canvasId");

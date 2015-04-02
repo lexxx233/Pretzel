@@ -1,11 +1,9 @@
 var THREE = require('../lib/three.min.js');
 THREE.OrbitControls = require('../lib/OrbitControls.js');
-var THREEx = require('../lib/THREEx.WindowResize.min.js');
 var Style = require('./Pretzel.Style.js');
 var Stats = require('../lib/stats.min.js');
 
 var Viewer = function (divId) {
-    console.log("Viewer constructor called")
     this.divId = divId;
     this.scene = null;
     this.camera = null;
@@ -13,7 +11,8 @@ var Viewer = function (divId) {
     this.container = null;
     this.controls = null;
     this.clock = null;
-    this.stats = null;
+    //this.stats = null;
+    console.log(divId + " created")
 };
 
 Viewer.prototype = {
@@ -31,7 +30,6 @@ Viewer.prototype = {
         this.scene = new THREE.Scene();
         var SCREEN_WIDTH = document.getElementById(this.divId).clientWidth,
             SCREEN_HEIGHT = document.getElementById(this.divId).clientHeight;
-
         //Camera
         var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 1, FAR = 10000;
         this.camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
@@ -50,9 +48,6 @@ Viewer.prototype = {
         this.container = document.getElementById(this.divId);
         this.container.appendChild(this.renderer.domElement);
 
-        // events
-        THREEx.WindowResize(this.renderer, this.camera);
-
         //Orbit control
         this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
         this.controls.target = new THREE.Vector3(0, 0, 0);
@@ -61,11 +56,11 @@ Viewer.prototype = {
         this.clock = new THREE.Clock();
 
         //FPS stats
-        this.stats = new Stats();
-        this.stats.domElement.style.position = 'absolute';
-        this.stats.domElement.style.bottom = '0px';
-        this.stats.domElement.style.zIndex = 10;
-        this.container.appendChild(this.stats.domElement);
+        //this.stats = new Stats();
+        //this.stats.domElement.style.position = 'absolute';
+        //this.stats.domElement.style.bottom = '0px';
+        //this.stats.domElement.style.zIndex = 10;
+        //this.container.appendChild(this.stats.domElement);
 
         //Directional light
         var dLight = new THREE.DirectionalLight(0xffffff);
@@ -78,11 +73,11 @@ Viewer.prototype = {
 
         // add simple ground
         //var groundGeometry = new THREE.PlaneGeometry(5000, 5000, 1, 1);
-        var groundGeometry = new THREE.PlaneBufferGeometry(5000, 5000, 1, 1);
-        var ground = new THREE.Mesh(groundGeometry, new THREE.MeshPhongMaterial({color: 0xdddddd}));
-        ground.position.y = -100;
+        var groundGeometry = new THREE.PlaneBufferGeometry(3000, 3000, 1, 1);
+        var ground = new THREE.Mesh(groundGeometry, new THREE.MeshPhongMaterial({color: 0xefefef}));
+        ground.position.y = -200;
         ground.rotation.x = -Math.PI / 2;
-        ground.receiveShadow = true;
+        ground.receiveShadow = false;
         this.scene.add(ground);
     },
 
@@ -95,7 +90,7 @@ Viewer.prototype = {
      */
     _renderTube: function (v1, v2, style) {
         var tube = new THREE.Mesh(new THREE.TubeGeometry(new THREE.LineCurve3(v1, v2), 0, style.getRadius()), style.getMaterial());
-        tube.castShadow = tube.receiveShadow = true;
+        tube.castShadow = tube.receiveShadow = false;
         this.scene.add(tube);
     },
 
@@ -107,7 +102,7 @@ Viewer.prototype = {
      */
     _renderSphere: function (v1, style) {
         var sphere = new THREE.Mesh(new THREE.SphereGeometry(style.getRadius(), 7, 7), style.getMaterial());
-        sphere.castShadow = sphere.receiveShadow = true;
+        sphere.castShadow = sphere.receiveShadow = false;
         sphere.position.x = v1.x;
         sphere.position.y = v1.y;
         sphere.position.z = v1.z;
@@ -118,8 +113,10 @@ Viewer.prototype = {
      *
      */
     update: function () {
+
         this.controls.update(this.clock.getDelta());
-        this.stats.update();
+
+        //this.stats.update();
         // smoothly move the particleLight
         var timer = Date.now() * 0.000025;
         //particleLight.position.x = Math.sin(timer * 5) * 300;
@@ -128,7 +125,6 @@ Viewer.prototype = {
 
     /**
      *
-     * @this {Viewer}
      */
     render: function () {
         if (this.renderer) {
@@ -140,8 +136,9 @@ Viewer.prototype = {
      *
      */
     animate: function () {
+        var a = this.animate();
         window.requestAnimationFrame(function () {
-            this.animate;
+            a;
         });
         this.render();
         this.update();
@@ -159,7 +156,6 @@ Viewer.prototype = {
             this._renderSphere(points[i], structure.getStyle());
         }
         this._renderSphere(points[points.length - 1], structure.getStyle());
-
     },
 
     /**

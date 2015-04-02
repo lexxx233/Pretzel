@@ -1,6 +1,6 @@
 var Style = require('./Pretzel.Style.js');
 
-var DEFAULT_RADIUS = 2.5;
+var DEFAULT_RADIUS = 1;
 var DEFAULT_COLOR = 0xcccccc;
 var DEFAULT_OPACITY = 1.0;
 var DEFAULT_STYLE = new Style(DEFAULT_RADIUS, DEFAULT_COLOR, DEFAULT_OPACITY);
