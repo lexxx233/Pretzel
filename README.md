@@ -1,4 +1,4 @@
-[**Pretzel**](https://github.com/lexxx233/Pretzel.JS) is a lightweight javascript library for visualizing/interacting with 3D folded linear structures (i.e chromosome). It is built on top of [**Three**](http://www.threejs.org), a low complexity javascript 3D library. **Pretzel** is intended to simplify and/or eliminate the need to manually control representation and interaction with folded linear structures.
+[**Pretzel**](https://github.com/lexxx233/Pretzel.JS) is a lightweight javascript library for visualizing/interacting with 3D folded linear structures (i.e chromosome). **Pretzel** is intended to simplify and/or eliminate the need to manually control representation, interaction, and simulation with folded linear structures.
 ___
 ####Quick Start
 Simply source pretzel into your html
