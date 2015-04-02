@@ -3,16 +3,33 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Pretzel Demo</title>
-    <script src="../dist/pretzel.js"></script>
 </head>
 <body>
 <center>
     <b>PRETZEL demo</b><br><br><br>
     VIEW PORT I<br>
-    <canvas id="canvas1" name="canvas1" width="500" height="500"></canvas>
+
+    <div id="canvas1" name="canvas1" clientWidth="500" clientHeight="500"></div>
     <br>
     VIEW PORT II<br>
-    <canvas id="canvas2" name="canvas2" width="500" height="500"></canvas>
+
+    <div id="canvas2" name="canvas1" clientWidth="500" clientHeight="500"></div>
+    <br>
+    <script src="../dist/Trial.js"></script>
+    <script src="../dist/pretzel.js">
+    </script>
+    <script>
+        window.onload = function () {
+            trial.hi();
+            var viewer1 = new Pretzel.Viewer("canvas1");
+            var viewer2 = new Pretzel.Viewer("canvas2");
+            viewer1.init();
+            viewer1.initializeVisual();
+            alert("hello")
+        }
+
+    </script>
+
 </center>
 </body>
 </html>
