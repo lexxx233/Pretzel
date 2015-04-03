@@ -1,6 +1,6 @@
 The foremost and primary goal of pretzel is to create a portable and functional webGL visualization framework for 3D linear structures (i.e. biological chromosome). The library also provide a wide variety of utilities to interact with, examine, and simulate the structures in close details. 
 ___
-[![multiview](http://bx.psu.edu/~thanh/multiview_demo.png)](http://bx.psu.edu/~thanh/example/multiview.html)
+Spin some demos > [![multiview](http://bx.psu.edu/~thanh/multiview_demo.png)](http://bx.psu.edu/~thanh/example/multiview.html)
 [![decorator](http://bx.psu.edu/~thanh/decorator_demo.png)](http://bx.psu.edu/~thanh/example/decorator.html)
 [![simulation](http://bx.psu.edu/~thanh/simulation_demo.png)](http://bx.psu.edu/~thanh/example/simulator.html)
 [![query](http://bx.psu.edu/~thanh/query_demo.png)](http://bx.psu.edu/~thanh/example/#)
