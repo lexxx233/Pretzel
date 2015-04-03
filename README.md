@@ -7,12 +7,12 @@ The foremost and primary goal of pretzel is to create a portable and functional 
 [![interaction](http://bx.psu.edu/~thanh/interaction_demo.png)](http://bx.psu.edu/~thanh/#)
 
 ### Features
-##### _**No pesky plugins**_ | Self-contained, portable, with reasonable footprint, Pretzel works with all browsers out of the box
-##### _**Simplified, non-compromising abstraction**_ | Pretzel takes manual manipulation of coordinates out of the equation without compromising customizability when you want it. Give pretzel the starting coordinates of the structures, things will be taken care of automagically
-##### _**Intuitive APIs**_ | It takes under 3 minutes to get started and be productive. [**Detail documentation**](www.google.com) is provided 
-##### _**Parametric simulation**_ | With different noise models (Gaussian, Laplacian, Uniform), visualization, and free parameters for any simulation and data generation need
-##### _**Visual query**_ | Pretzel provides a visual mean to create AJAX query
-##### _**Flexible and extensible**_ | Hook any function to the existing framework and you are ready to have a completely new interactor, noise model, or any other functionalities. Integrate seamlessly into your existing workflow
+_**No pesky plugins**_ | Self-contained, portable, with reasonable footprint, Pretzel works with all browsers out of the box
+_**Simplified, non-compromising abstraction**_ | Pretzel takes manual manipulation of coordinates out of the equation without compromising customizability when you want it. Give pretzel the starting coordinates of the structures, things will be taken care of automagically
+_**Intuitive APIs**_ | It takes under 3 minutes to get started and be productive. [**Detail documentation**](www.google.com) is provided 
+_**Parametric simulation**_ | With different noise models (Gaussian, Laplacian, Uniform), visualization, and free parameters for any simulation and data generation need
+_**Visual query**_ | Pretzel provides a visual mean to create AJAX query
+_**Flexible and extensible**_ | Hook any function to the existing framework and you are ready to have a completely new interactor, noise model, or any other functionalities. Integrate seamlessly into your existing workflow
 
 ###Quick Start
 
