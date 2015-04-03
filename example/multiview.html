@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Pretzel - Multi-view (demo)</title>
+</head>
+<body>
+<center>
+    <b>Pretzel - Light-weight, portable linear structure playground (demo)</b><br><br><br>
+    VIEWPORT 1 <br>
+
+    <div id="canvas1" name="canvas1" style="height: 500px; width: 800px"></div>
+
+    <br>
+
+    VIEWPORT 2 <br>
+
+    <div id="canvas2" name="canvas1" style="height: 500px; width: 800px"></div>
+
+    <br>
+
+    end sample
+
+</center>
+<script src="../dist/pretzel.js">
+</script>
+<script>
+    window.onload = function () {
+        var viewer1 = new Pretzel.Viewer("canvas1");
+        var viewer2 = new Pretzel.Viewer("canvas2");
+        viewer1.init();
+        viewer2.init();
+        var bag = new Pretzel.Bag();
+        var hi = new Pretzel.Structure('a');
+        var hi2 = new Pretzel.Structure('b');
+        hi.randStructure(30);
+        hi2.randStructure(30);
+        Pretzel.startViewer(viewer1, viewer2);
+        viewer1.viewStructure(hi);
+        viewer2.viewStructure(hi2);
+
+    }
+</script>
+</body>
+</html>

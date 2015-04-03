@@ -4,16 +4,19 @@
  */
 var Pretzel = {VERSION: "0.0.1"};
 
-Pretzel.Style = require('./Pretzel.Style.js');
-Pretzel.Global = require('./Pretzel.Global.js');
-Pretzel.Structure = require('./Pretzel.Structure.js');
-Pretzel.Bag = require('./Pretzel.Bag.js');
-Pretzel.Viewer = require('./Pretzel.Viewer.js');
-Pretzel.Utilities = require('./Pretzel.Utilities.js');
-Pretzel.StructureDecorator = require('./Pretzel.StructureDecorator.js');
-Pretzel.StructureInteractor = require('./Pretzel.StructureInteractor.js');
-Pretzel.StructureSimulator = require('./Pretzel.StructureSimulator.js');
-Pretzel.startViewer = require('./Pretzel.Task.js');
+Pretzel.Style = require('./core/Pretzel.Style.js');
+Pretzel.Global = require('./core/Pretzel.Global.js');
+Pretzel.Structure = require('./core/Pretzel.Structure.js');
+Pretzel.Bag = require('./core/Pretzel.Bag.js');
+Pretzel.Viewer = require('./visualization/Pretzel.Viewer.js');
+Pretzel.Utilities = require('./core/Pretzel.Utilities.js');
+Pretzel.DecoratorFactory = require('./visualization/Pretzel.DecoratorFactory.js');
+Pretzel.SegmentDecorator = require('./visualization/Pretzel.SegmentDecorator.js');
+Pretzel.PointDecorator = require('./visualization/Pretzel.PointDecorator.js');
+Pretzel.AssociationDecorator = require('./visualization/Pretzel.AssociationDecorator.js');
+Pretzel.StructureInteractor = require('./interaction/Pretzel.StructureInteractor.js');
+Pretzel.StructureSimulator = require('./simulation/Pretzel.StructureSimulator.js');
+Pretzel.startViewer = require('./core/Pretzel.Task.js');
 
 var initPretzel = function () {
     window.Pretzel = Pretzel;

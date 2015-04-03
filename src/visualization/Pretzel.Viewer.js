@@ -1,8 +1,14 @@
-var THREE = require('../lib/three.min.js');
-THREE.OrbitControls = require('../lib/OrbitControls.js');
-var Style = require('./Pretzel.Style.js');
-var Stats = require('../lib/stats.min.js');
+var THREE = require('../../lib/three.min.js');
+THREE.OrbitControls = require('../../lib/OrbitControls.js');
+var Style = require('./../core/Pretzel.Style.js');
+var Stats = require('../../lib/stats.min.js');
+var DecoratorFactory = require('./Pretzel.DecoratorFactory.js');
 
+/**
+ *
+ * @param divId {String}
+ * @constructor
+ */
 var Viewer = function (divId) {
     this.divId = divId;
     this.scene = null;
@@ -22,8 +28,6 @@ Viewer.prototype = {
      *
      * Init needs to be called before anything to setup the scene
      * This function setup scene, camera, renderer, container, controls, and stats
-     *
-     * @param divId
      */
     init: function () {
         //Main scene
@@ -71,6 +75,7 @@ Viewer.prototype = {
         dLight.shadowMapWidth = dLight.shadowMapHeight = 1000;
         this.scene.add(dLight);
 
+
         // add simple ground
         //var groundGeometry = new THREE.PlaneGeometry(5000, 5000, 1, 1);
         var groundGeometry = new THREE.PlaneBufferGeometry(3000, 3000, 1, 1);
@@ -111,9 +116,23 @@ Viewer.prototype = {
 
     /**
      *
+     * @param v1
+     * @param v2
+     * @param style
+     * @private
+     */
+    _renderLine: function (v1, v2, style) {
+        var lineGeometry = new THREE.Geometry();
+        lineGeometry.vertices.push(v1);
+        lineGeometry.vertices.push(v2);
+        var line = new THREE.Line(lineGeometry, style.material);
+        this.scene.add(line);
+    },
+
+    /**
+     *
      */
     update: function () {
-
         this.controls.update(this.clock.getDelta());
 
         //this.stats.update();
@@ -156,6 +175,20 @@ Viewer.prototype = {
             this._renderSphere(points[i], structure.getStyle());
         }
         this._renderSphere(points[points.length - 1], structure.getStyle());
+    },
+
+    /**
+     *
+     * @param decorator
+     */
+    viewDecorator: function (decorator) {
+        if (decorator.type == DecoratorFactory.TYPE.SEGMENT_DECORATOR) {
+            this.viewStructure(decorator);
+        } else if (decorator.type == DecoratorFactory.TYPE.POINT_DECORATOR) {
+            this._renderSphere(decorator.getAnchors()[0], decorator.style);
+        } else if (decorator.type == DecoratorFactory.TYPE.ASSOCIATE_DECORATOR) {
+            this._renderLine(decorator.getAnchors()[0], decorator.getAnchors()[1], decorator.getStyle());
+        }
     },
 
     /**

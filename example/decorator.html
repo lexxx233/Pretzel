@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Pretzel - Light-weight, portable linear structure playground (demo)</title>
+</head>
+<body>
+<center>
+    <b>Pretzel - Decorator (demo)</b><br><br><br>
+
+    <div id="canvas1" name="canvas1" style="height: 1500px; width: 95%"></div>
+
+</center>
+<script src="../dist/pretzel.js">
+</script>
+<script>
+    window.onload = function () {
+        var viewer1 = new Pretzel.Viewer("canvas1");
+        viewer1.init();
+        var hi = new Pretzel.Structure('a');
+        var hi2 = new Pretzel.Structure('b');
+
+        hi.setLength(100);
+        hi.randStructure(3);
+        hi2.setLength(100);
+        hi2.randStructure(3);
+
+        Pretzel.startViewer(viewer1);
+
+        viewer1.viewStructure(hi);
+        viewer1.viewStructure(hi2);
+        var segmentFactory = new Pretzel.DecoratorFactory(Pretzel.DecoratorFactory.TYPE.SEGMENT_DECORATOR);
+        var hid = segmentFactory.makeDecorator(hi, new Pretzel.Style(3.5, 0x00ff00, 1), 25, 75);
+        var hid2 = segmentFactory.makeDecorator(hi, new Pretzel.Style(7, 0x00ffdd, 0.5), 10, 20);
+        var hid3 = segmentFactory.makeDecorator(hi, new Pretzel.Style(10.5, 0xff0000, 0.5), 13, 17);
+        var hid4 = segmentFactory.makeDecorator(hi, new Pretzel.Style(3.5, 0xf0ff00, 0.5), 0, 1);
+        var hid5 = segmentFactory.makeDecorator(hi, new Pretzel.Style(15, 0xff00ff, 1), 60, 80);
+        viewer1.viewDecorator(hid);
+        viewer1.viewDecorator(hid2);
+        viewer1.viewDecorator(hid3);
+        viewer1.viewDecorator(hid4);
+        viewer1.viewDecorator(hid5);
+
+        var pointFactory = new Pretzel.DecoratorFactory(Pretzel.DecoratorFactory.TYPE.POINT_DECORATOR);
+        var pid = pointFactory.makeDecorator(hi, new Pretzel.Style(7, 0xccffdd, 0.5), 90);
+        var pid2 = pointFactory.makeDecorator(hi2, new Pretzel.Style(5, 0xffcccc, 0.8), 95);
+        viewer1.viewDecorator(pid);
+        viewer1.viewDecorator(pid2);
+
+        var assFactory = new Pretzel.DecoratorFactory(Pretzel.DecoratorFactory.TYPE.ASSOCIATE_DECORATOR);
+        var aid = assFactory.makeDecorator(hi, new Pretzel.Style(), 90, 95, hi2);
+        aid.makeAssociationStyle();
+        viewer1.viewDecorator(aid);
+    }
+</script>
+</body>
+</html>

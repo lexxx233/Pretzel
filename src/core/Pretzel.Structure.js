@@ -1,5 +1,5 @@
 var Global = require('./Pretzel.Global.js');
-var THREE = require('../lib/three.min.js');
+var THREE = require('../../lib/three.min.js');
 
 Structure = function (id, _len, _style) {
     this.id = id;

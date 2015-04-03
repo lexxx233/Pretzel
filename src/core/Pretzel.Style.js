@@ -1,9 +1,11 @@
-var THREE = require('../lib/three.min.js')
+var THREE = require('../../lib/three.min.js')
 
 var Style = function (_r, _color, _opacity) {
     this.r = _r;
     this.opacity = _opacity;
-    this.material = new THREE.MeshPhongMaterial({color: _color});
+    this.material = new THREE.MeshLambertMaterial({color: _color});
+    this.material.transparent = true;
+    this.material.opacity = this.opacity;
 };
 
 Style.prototype = {
