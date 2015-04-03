@@ -15,6 +15,8 @@ Pretzel.SegmentDecorator = require('./visualization/Pretzel.SegmentDecorator.js'
 Pretzel.PointDecorator = require('./visualization/Pretzel.PointDecorator.js');
 Pretzel.AssociationDecorator = require('./visualization/Pretzel.AssociationDecorator.js');
 Pretzel.StructureInteractor = require('./interaction/Pretzel.StructureInteractor.js');
+Pretzel.ModelFrame = require('./simulation/Pretzel.ModelFrame.js');
+Pretzel.NoiseFrame = require('./simulation/Pretzel.NoiseFrame.js');
 Pretzel.StructureSimulator = require('./simulation/Pretzel.StructureSimulator.js');
 Pretzel.startViewer = require('./core/Pretzel.Task.js');
 

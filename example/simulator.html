@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Pretzel - Light-weight, portable linear structure playground (demo)</title>
+</head>
+<body>
+<center>
+    <b>Pretzel - Simulator (demo)</b><br><br><br>
+
+    <div id="canvas1" name="canvas1" style="height: 1500px; width: 95%"></div>
+    Data Matrix
+    <br>
+    <canvas id="hm" name="hm" width="600" , height="600"></canvas>
+
+</center>
+<script src="../dist/pretzel.js"></script>
+<script>
+    window.onload = function () {
+        var viewer1 = new Pretzel.Viewer("canvas1");
+        viewer1.init();
+
+        var xFunc = function (z) {
+            return Math.sin(z) * 30;
+        };
+
+        var yFunc = function (z) {
+            return Math.cos(z) * 30;
+        };
+
+        var xFunc2 = function (z) {
+            return Math.cos(z / 5) * 30;
+        };
+
+        var yFunc2 = function (z) {
+            return Math.sin(z / 5) * 30;
+        };
+
+        var hi = new Pretzel.Structure('a');
+        var hi2 = new Pretzel.Structure('b');
+
+
+        var sm = new Pretzel.ModelFrame(0, 60, 3.14 / 4, xFunc, yFunc);
+        var sm2 = new Pretzel.ModelFrame(70, 130, 3.34 / 4, xFunc2, yFunc2);
+
+        hi.setAnchors(sm.generateModel());
+        hi2.setAnchors(sm2.generateModel());
+
+        var m = sm.generateMatrix(hi.getAnchors());
+        var mSize = 600 / m;
+
+        Pretzel.startViewer(viewer1);
+
+        viewer1.viewStructure(hi);
+        viewer1.viewStructure(hi2);
+
+        var c = document.getElementById("hm");
+        var ctx = c.getContext("2d");
+
+
+        for (var i = 0; i < m.length; i++) {
+            for (var j = 0; j < m.length; j++) {
+                var hix = "rgb(".concat(Math.floor(m[i][j]).toString(), ",0,0)");
+                ctx.fillStyle = hix;
+                ctx.fillRect(i * mSize, j * mSize, mSize, mSize);
+            }
+        }
+
+
+    }
+</script>
+</body>
+</html>

@@ -45,6 +45,14 @@ Structure.prototype = {
 
     /**
      *
+     * @param anchors
+     */
+    setAnchors: function (anchors) {
+        this.anchors = anchors;
+    },
+
+    /**
+     *
      * @param _id
      */
     setId: function (_id) {
@@ -65,6 +73,14 @@ Structure.prototype = {
      */
     setStyle: function (_style) {
         this.style = _style;
+    },
+
+    /**
+     *
+     * @param v1 {THREE.Vector3}
+     */
+    pushAnchor: function (v1) {
+        this.anchors.push(v1);
     },
 
     /**
