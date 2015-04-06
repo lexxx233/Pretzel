@@ -34,38 +34,38 @@ Simply source pretzel into your html then create a div element with an unique id
     <html>
 ```
 Begin by creating a viewer port for using the div element Id. 
+As many viewport can be created as long as they possess unique Ids
 ```javascript
     window.onload = function(){
         var viewer = new Pretzel.Viewer("canvasId");
-        viewer.init(); //init has to be called to setup the scene.
-        //Remember multiple view ports can be created on the same page as long as they have their own unique Id
+        ...
+        Pretzel.startViewer(viewer1) // Rendering begin when startViewer routine is called
     }
 ```
 Instantiate a structure Object
 ```javascript
     ...
-    var bag = new Pretzel.Bag(); //Bagging as way to put structures into collections
-    var structure = new Pretzel.Structure("chr1");
+    var structure = new Pretzel.Structure();
     structure.setLength(122300);
-    structure.randStructure(100)
-    bag.add(structure);
+    structure.randStructure(100); //This function creates a random structure with 100 joints
     ...
 ```
 Individual structure or bags of structure can be rendered with viewer's APIs
 ```javascript
     ...
-    viewer.viewBag(bag)
-    //Alternatively individual structure can be rendered - viewer.viewStructure(structure)
+    viewer.viewStructure(structure);
+    //Pretzel.Bag is an API to put many structures into collection to manipulate and view all at the same time
     ...
 ```
-All sort of information (sugar) can be added on top of the rendered structures
+All sort of information can be added on top of the rendered structures
 ```javascript
     ...
-    //Specify the region of interest to add information
-    var info = new PRETZEL.ChromosomeDecorator(bag.getChromosome("chr1"), 4000, 12000);
-    var decoratorBag = new PRETZEL.Bag();
-    decoratorBag.add(info);
-    viewer.viewBag(decoratorBag);
+    //Create a Decorator Factory which will produce one of 3 decorator type
+    var segmentFactory = new Pretzel.DecoratorFactory(Pretzel.DecoratorFactory.TYPE.SEGMENT_DECORATOR);
+    //Now you can crank out as many decorator of this type as you wish
+    var hid = segmentFactory.makeDecorator(hi, new Pretzel.Style(3.5, 0x00ff00, 1), 25, 75);
+    //You can then view this decorator or add it to Bags
+    viewer1.viewDecorator(hid);
     ...
 ```
 ##### Interaction
