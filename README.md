@@ -57,30 +57,40 @@ Individual structure or bags of structure can be rendered with viewer's APIs
     //Pretzel.Bag is an API to put many structures into collection to manipulate and view all at the same time
     ...
 ```
+##### Decoration
 All sort of information can be added on top of the rendered structures
 ```javascript
     ...
     //Create a Decorator Factory which will produce one of 3 decorator type
     var segmentFactory = new Pretzel.DecoratorFactory(Pretzel.DecoratorFactory.TYPE.SEGMENT_DECORATOR);
-    //Now you can crank out as many decorator of this type as you wish
+    //3 types of decorator
+    // SEGMENT_DECORATOR
+    // POINT_DECORATOR
+    // ASSOCIATION_DECORATOR
+    // After creating the decorator factory, you can crank out as many decorator of this type as you wish
     var hid = segmentFactory.makeDecorator(hi, new Pretzel.Style(3.5, 0x00ff00, 1), 25, 75);
-    //You can then view this decorator or add it to Bags
+    //You can then view individual decorator or add it to Bags
     viewer1.viewDecorator(hid);
     ...
 ```
-##### Interaction
-Setup any type of interactors which facilitate interactions with the 3D Structures. Several default
-```javascript
-    viewer.InteractorFactory('mapInteractor');
-```
-Use default behavior or hook new functionality for behavior for the interactors
-```javascript
-    alert();
-```
 ##### Simulation
+Begin by seting up a frame for your model, deciding your functions to model structure
+```javascript
+     var xFunc = function (z) {return Math.sin(z) * 30;};
+     var yFunc = function (z) {return Math.cos(z) * 30;};
+     var sm = new Pretzel.ModelFrame(0, 60, 3.14 / 4, xFunc, yFunc);
+```
+Apply the model on a structure
+```javascript
+    var structure = new Pretzel.Structure();
+    structure.setAnchors(sm.generateModel());
+```
+##### Visual Query
+
+##### Interaction
 
 ### Authors and Contributors
 The project is developed and maintained by Thanh Le (@lexxx233)
 
-### Support & Contact
+### Support and Contact
 Having trouble? Check out the documentation at https://help.github.com/pages or contact pretzeljsproject@gmail.com . You can also donate to future development of software like this [here](#)
